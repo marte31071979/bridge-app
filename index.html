@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Menu a Tendina con Immagini</title>
+	<link rel="manifest" href="manifest.json">
+	<meta name="theme-color" content="#333">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            overflow: hidden;
+        }
+        .menu {
+            background-color: #333;
+            overflow: hidden;
+            padding: 10px;
+            display: flex;
+            gap: 10px;
+        }
+        .menu select {
+            background-color: #444;
+            color: white;
+            border: none;
+            padding: 10px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+        .menu select:hover {
+            background-color: #555;
+        }
+        .image-container {
+            text-align: center;
+            margin-top: 20px;
+            overflow: auto;
+            max-height: calc(100vh - 100px);
+            max-width: 100%;
+        }
+        .image-container img {
+            max-width: 80%;
+            height: auto;
+            display: none;
+            transition: transform 0.3s ease;
+            cursor: zoom-in;
+        }
+        .image-container img.zoomed {
+            transform: scale(2);
+            cursor: zoom-out;
+        }
+    </style>
+</head>
+<body>
+    <div class="menu">
+        <div>
+            <select id="section1" onchange="showImage('section1')">
+                <option value="">Aperture</option>
+                <option value="./img/aperture.png">Tabella</option>
+                <option value="./img/duefiori.png">2 fiori</option>
+		<option value="./img/sotto_aperture.png">SottoAperture</option>
+            </select>
+        </div>
+        <div>
+            <select id="section2" onchange="showImage('section2')">
+                <option value="">Risposte</option>
+                <option value="./img/risp_uno_nobile.png">1 Nobile</option>
+                <option value="./img/risp_uno_minore.png">1 Minore</option>
+                <option value="./img/risp_uno_sa.png">1 SA</option>
+            </select>
+        </div>
+        <div>
+            <select id="section3" onchange="showImage('section3')">
+                <option value="">Altro</option>
+		<option value="./img/avanzate.png">Avanzate</option>
+                <option value="./img/gazzilli.png">Gazzilli</option>
+                <option value="./img/intervento.png">Intervento</option>
+                <option value="./img/p_m_s.png">Parziale Manche o Slam</option>
+                <option value="./img/risp_contro_avversa.png">Risposta contro Avversario</option>
+		<option value="./img/cue_bid.png">Cue Bid</option>
+		<option value="./img/drury.png">Drury</option>
+		<option value="./img/rkcb.png">5 assi</option>
+		<option value="./img/probabilita.png">Probabilita</option>
+		<option value="./img/attacco_di_asso.png">Attacco Asso</option>
+		<option value="./img/terzo_di_mano_morto_cartine.png">3°di Mano(morto cartine)</option>
+		<option value="./img/terzo_di_mano_morto_onore.png">3°di Mano(morto onore)</option>
+		<option value="./img/terzo_di_mano_morto_singolo.png">3°di Mano(morto singolo)</option>
+		<option value="./img/smazzate_illustrative.png">Smazzate chiama/rifiuta</option>
+		<option value="./img/correttivi_fit_conclamato.png">Correttivi Fit Conclamato</option>
+            </select>
+        </div>
+    </div>
+
+    <div class="image-container">
+        <img id="img1" src="./img/aperture.png" alt="Immagine 1" onclick="toggleZoom(this)>
+        <img id="img2" src="./img/duefiori.png" alt="Immagine 2" onclick="toggleZoom(this)>
+        <img id="img3" src="./img/risp_uno_nobile.png" alt="Immagine 3" onclick="toggleZoom(this)>
+        <img id="img4" src="./img/risp_uno_minore.png" alt="Immagine 4" onclick="toggleZoom(this)>
+        <img id="img5" src="./img/risp_uno_sa.png" alt="Immagine 5" onclick="toggleZoom(this)>
+	<img id="img6" src="./img/sotto_aperture.png" alt="Immagine 6" onclick="toggleZoom(this)>
+      	<img id="img7" src="./img/intervento.png" alt="Immagine 7" onclick="toggleZoom(this)>
+        <img id="img8" src="./img/p_m_s.png" alt="Immagine 8" onclick="toggleZoom(this)>
+	<img id="img9" src="./img/risp_contro_avversa.png" alt="Immagine 9" onclick="toggleZoom(this)>
+	<img id="img10" src="./img/avanzate.png" alt="Immagine 10" onclick="toggleZoom(this)>
+	<img id="img11" src="./img/cue_bid.png" alt="Immagine 11" onclick="toggleZoom(this)>
+	<img id="img12" src="./img/drury.png" alt="Immagine 12" onclick="toggleZoom(this)>
+	<img id="img13" src="./img/rkcb.png" alt="Immagine 13" onclick="toggleZoom(this)>
+	<img id="img14" src="./img/probabilita.png" alt="Immagine 14" >
+	<img id="img15" src="./img/attacco_di_asso.png" alt="Immagine 15" >
+	<img id="img16" src="./img/terzo_di_mano_morto_cartine.png" alt="Immagine 16" >
+	<img id="img17" src="./img/terzo_di_mano_morto_onore.png" alt="Immagine 17" >
+	<img id="img18" src="./img/terzo_di_mano_morto_singolo.png" alt="Immagine 18" >
+	<img id="img19" src="./img/smazzate_illustrative.png" alt="Immagine 19" >
+	<img id="img20" src="./img/correttivi_fit_conclamato.png" alt="Immagine 20" >
+    <img id="img21" src="./img/gazzilli.png" alt="Immagine 21" >
+    </div>
+
+    <script>
+        function showImage(sectionId) {
+            const images = document.querySelectorAll('.image-container img');
+
+            // Nasconde tutte le immagini
+            images.forEach(img => img.style.display = 'none');
+
+            // Mostra l'immagine selezionata nella sezione specifica
+            const selector = document.getElementById(sectionId);
+            const selectedValue = selector.value;
+            if (selectedValue) {
+                const selectedImage = document.querySelector(`img[src="${selectedValue}"]`);
+                if (selectedImage) {
+                    selectedImage.style.display = 'block';
+                }
+            }
+        }
+
+        function toggleZoom(image) {
+            if (image.classList.contains('zoomed')) {
+                image.classList.remove('zoomed');
+            } else {
+                const allImages = document.querySelectorAll('.image-container img');
+                allImages.forEach(img => img.classList.remove('zoomed'));
+                image.classList.add('zoomed');
+            }
+        }
+    </script>
+
+<script>
+if ('serviceWorker' in navigator) {
+  navigator.serviceWorker.register('service-worker.js');
+}
+</script>
+</body>
+</html>
