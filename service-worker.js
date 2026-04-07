@@ -1,4 +1,4 @@
-const CACHE_NAME = "bridge-app-v1";
+const CACHE_NAME = "bridge-app-v4";
 
 const FILES = [
   "./",
