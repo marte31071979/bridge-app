@@ -3,6 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="icon" href="./favicon.ico">
 <link rel="icon" type="image/png" sizes="32x32" href="./favicon-32x32.png">
 <link rel="icon" type="image/png" sizes="16x16" href="./favicon-16x16.png">
 <title>Appunti Martino</title>
@@ -158,11 +159,30 @@ function loadCategory(cat) {
     });
 }
 
-// SERVICE WORKER
 if ('serviceWorker' in navigator) {
-    navigator.serviceWorker.register('./service-worker.js');
-}
-</script>
+  navigator.serviceWorker.register('./service-worker.js')
+    .then(reg => {
 
+      const LAST_CHECK = localStorage.getItem("lastUpdateCheck");
+      const NOW = Date.now();
+
+      // 24 ore = 86400000 ms
+      if (!LAST_CHECK || (NOW - LAST_CHECK) > 86400000) {
+        reg.update();
+        localStorage.setItem("lastUpdateCheck", NOW);
+      }
+
+      // se aggiorna → ricarica
+      navigator.serviceWorker.addEventListener('controllerchange', () => {
+        window.location.reload();
+      });
+
+    });
+}
+
+</script>
+<p style="text-align:center; opacity:0.6;">
+  Versione 1.0.0
+</p>
 </body>
 </html>
