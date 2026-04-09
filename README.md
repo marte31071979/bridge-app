@@ -1,4 +1,4 @@
-Appunti di Bridge :)
+Appunti di Bridge :) \n
 Un progettino fatto al volo, semplice semplice.
 
 il sito che è navigabile, puo' diventare un app da poter utilizzare sui vostri dispositivi : 
