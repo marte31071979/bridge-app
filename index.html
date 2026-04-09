@@ -95,6 +95,8 @@ img {
 <div class="sidebar" id="sidebar">
     <a onclick="loadCategory('aperture')">Aperture</a>
     <a onclick="loadCategory('risposte')">Risposte</a>
+	<a onclick="loadCategory('avanzate')">Avanzate</a>
+	<a onclick="loadCategory('convenzionali')">Convenzionali</a>
     <a onclick="loadCategory('altro')">Altro</a>
 </div>
 
@@ -115,15 +117,20 @@ const data = {
 		{ name: "1 SA", img: "./img/risp_uno_sa.png" }
 		
     ],
-    altro: [
-        { name: "Gazzilli", img: "./img/gazzilli.png" },
-        { name: "Avanzate", img: "./img/avanzate.png" },
+	avanzate : [
+	    { name: "Avanzate", img: "./img/avanzate.png" },
 		{ name: "Intervento", img: "./img/intervento.png" },
+		{ name: "Cue Bid", img: "./img/cue_bid.png" },
+		{ name: "5 assi", img: "./img/rkcb.png" }
+	],
+	convenzionali : [
+		{ name: "Gazzilli", img: "./img/gazzilli.png" },
+		{ name: "Drury", img: "./img/drury.png" },
+		{ name: "Puppet", img: "./img/puppet.png" }
+	],
+    altro: [
 		{ name: "Parziale Manche o Slam", img: "./img/p_m_s.png" },
 		{ name: "Risposta contro Avversario", img: "./img/risp_contro_avversa.png" },
-		{ name: "Cue Bid", img: "./img/cue_bid.png" },
-		{ name: "Drury", img: "./img/drury.png" },
-		{ name: "5 assi", img: "./img/rkcb.png" },
 		{ name: "Attacco Asso", img: "./img/attacco_di_asso.png" },
 		{ name: "3°di Mano(morto cartine)", img: "./img/terzo_di_mano_morto_cartine.png" },
 		{ name: "3°di Mano(morto onore)", img: "./img/terzo_di_mano_morto_onore.png" },
@@ -180,9 +187,15 @@ if ('serviceWorker' in navigator) {
     });
 }
 
+//if (/iPhone|iPad|iPod/.test(navigator.userAgent)) {
+//  alert("Per installare l'app:\nApri il sito con Safari→\nPremi Condividi 📤 → Aggiungi a schermata Home");
+//}
+//else {
+//	alert ("Se non appare installa:\n→Apri Chrome\n→Apri il sito\n→se Esce installa istalla l'applicazione e la troverai sul desktop\n→altrimenti clicca sui tre puntini in alto a destra e Aggiungi a schermata Home");
+//}
 </script>
 <p style="text-align:center; opacity:0.6;">
-  Versione 1.0.0
+  Versione 1.0.1
 </p>
 </body>
 </html>
