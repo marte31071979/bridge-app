@@ -4,20 +4,19 @@ Un progettino fatto al volo, semplice semplice.
 il sito che è navigabile, puo' diventare un app da poter utilizzare sui vostri dispositivi : 
 
    * Su Computer
-      → Apri Chrome
-      → Apri il sito
-      → Sulla barra indirizzi esce il pulsante istalla
+        → Apri Chrome
+        → Apri il sito
+        → Sulla barra indirizzi esce il pulsante istalla
    * Su Dispositivi Android 
-      → Apri Chrome
-      → Apri il sito
-         → se Esce installa istalla l'applicazione e la troverai sul desktop
-         → altrimenti clicca sui tre puntini in alto a destra e Aggiungi a schermata Home****
+        → Apri Chrome
+        → Apri il sito
+           → se Esce installa istalla l'applicazione e la troverai sul desktop
+           → altrimenti clicca sui tre puntini in alto a destra e Aggiungi a schermata Home
    * Su Dispositivi iOS 
-      Apri il sito con Safari→\nPremi Condividi 📤 → Aggiungi a schermata Home
-      📱 Passaggi su Safari
-       → Apri il sito
-       → Premi il pulsante condivisione (📤)
-       → Scorri
+        📱 Passaggi su Safari
+         → Apri il sito
+         → Premi il pulsante condivisione (📤)
+         → Scorri
       👉 “Aggiungi a schermata Home”
       ⚠️ IMPORTANTE Funziona SOLO se apri con: 👉 Safari
 
