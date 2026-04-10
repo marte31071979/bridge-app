@@ -98,6 +98,7 @@ img {
 	<a onclick="loadCategory('avanzate')">Avanzate</a>
 	<a onclick="loadCategory('convenzionali')">Convenzionali</a>
     <a onclick="loadCategory('altro')">Altro</a>
+	<a onclick="mostraPreferiti()">⭐ Preferiti</a>
 </div>
 
 <div class="content" id="content">
@@ -155,12 +156,9 @@ function loadCategory(cat) {
         div.className = "card";
         div.innerHTML = item.name;
 
-        div.onclick = () => {
-            container.innerHTML = `
-                <h2>${item.name}</h2>
-                <img src="${item.img}" onclick="this.classList.toggle('zoomed')">
-            `;
-        };
+	div.onclick = () => {
+	  mostraDettaglio(item);
+	};
 
         container.appendChild(div);
     });
@@ -185,6 +183,76 @@ if ('serviceWorker' in navigator) {
       });
 
     });
+}
+
+let preferiti = JSON.parse(localStorage.getItem("preferiti")) || [];
+
+function salvaPreferiti() {
+  localStorage.setItem("preferiti", JSON.stringify(preferiti));
+}
+
+function togglePreferito(item) {
+  const index = preferiti.findIndex(p => p.img === item.img);
+
+  if (index >= 0) {
+    preferiti.splice(index, 1);
+  } else {
+    preferiti.push(item);
+  }
+
+  salvaPreferiti();
+}
+
+function èPreferito(item) {
+  return preferiti.some(p => p.img === item.img);
+}
+
+function mostraPreferiti() {
+  toggleMenu(); //
+  const container = document.getElementById("content");
+  container.innerHTML = "<h2>Preferiti</h2>";
+
+  if (preferiti.length === 0) {
+    container.innerHTML += "<p>Nessun preferito</p>";
+    return;
+  }
+
+  preferiti.forEach(item => {
+    const div = document.createElement("div");
+    div.className = "card";
+    div.innerHTML = item.name;
+
+    div.onclick = () => {
+      container.innerHTML = `
+        <h2>${item.name}</h2>
+        <img src="${item.img}">
+      `;
+    };
+
+    container.appendChild(div);
+  });
+}
+
+function mostraDettaglio(item) {
+  const container = document.getElementById("content");
+
+  const isFav = èPreferito(item);
+
+  container.innerHTML = `
+    <h2>${item.name}</h2>
+    
+    <button id="favBtn">
+      ${isFav ? "⭐ Rimuovi dai preferiti" : "☆ Aggiungi ai preferiti"}
+    </button>
+
+    <br><br>
+    <img src="${item.img}">
+  `;
+
+  document.getElementById("favBtn").onclick = () => {
+    togglePreferito(item);
+    mostraDettaglio(item); // aggiorna UI
+  };
 }
 
 //if (/iPhone|iPad|iPod/.test(navigator.userAgent)) {
