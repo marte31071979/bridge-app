@@ -154,7 +154,12 @@ function loadCategory(cat) {
     data[cat].forEach(item => {
         const div = document.createElement("div");
         div.className = "card";
-        div.innerHTML = item.name;
+		// ICONE
+		let icone = "";
+		if (èPreferito(item)) icone += " ⭐";
+		if (appunti[item.img]) icone += " 📝";
+
+		div.innerHTML = item.name + icone;
 
 	div.onclick = () => {
 	  mostraDettaglio(item);
@@ -191,6 +196,12 @@ function salvaPreferiti() {
   localStorage.setItem("preferiti", JSON.stringify(preferiti));
 }
 
+let appunti = JSON.parse(localStorage.getItem("appunti")) || {};
+
+function salvaAppunti() {
+  localStorage.setItem("appunti", JSON.stringify(appunti));
+}
+
 function togglePreferito(item) {
   const index = preferiti.findIndex(p => p.img === item.img);
 
@@ -220,13 +231,17 @@ function mostraPreferiti() {
   preferiti.forEach(item => {
     const div = document.createElement("div");
     div.className = "card";
-    div.innerHTML = item.name;
+
+	let icone = "";
+
+	if (èPreferito(item)) icone += " ⭐";
+	if (appunti[item.img]) icone += " 📝";
+
+	div.innerHTML = item.name + icone;
+
 
     div.onclick = () => {
-      container.innerHTML = `
-        <h2>${item.name}</h2>
-        <img src="${item.img}">
-      `;
+        mostraDettaglio(item);
     };
 
     container.appendChild(div);
@@ -238,21 +253,53 @@ function mostraDettaglio(item) {
 
   const isFav = èPreferito(item);
 
+  const nota = appunti[item.img] || "";
+  const hasNote = nota.trim() !== "";
+
   container.innerHTML = `
     <h2>${item.name}</h2>
     
     <button id="favBtn">
       ${isFav ? "⭐ Rimuovi dai preferiti" : "☆ Aggiungi ai preferiti"}
     </button>
-
+	<div id="areaNota">
+      ${
+        hasNote
+          ? `<textarea id="nota" style="width:100%; height:100px; border-radius:8px; padding:10px;">${nota}</textarea>`
+          : `<button id="addNota">✏️ Scrivi appunto</button>`
+      }
+    </div>
     <br><br>
     <img src="${item.img}">
   `;
 
+ // 👉 SE NON C’È NOTA
+  if (!hasNote) {
+    document.getElementById("addNota").addEventListener("click", () => {
+      document.getElementById("areaNota").innerHTML = `
+        <textarea id="nota" style="width:50%; height:100px; border-radius:8px; padding:10px;" placeholder="Scrivi appunti..."></textarea>
+      `;
+
+      attivaSalvataggio(item);
+    });
+  } else {
+    // 👉 SE GIÀ C’È NOTA
+    attivaSalvataggio(item);
+  }
+  
   document.getElementById("favBtn").onclick = () => {
     togglePreferito(item);
     mostraDettaglio(item); // aggiorna UI
   };
+}
+
+function attivaSalvataggio(item) {
+  const textarea = document.getElementById("nota");
+
+  textarea.addEventListener("input", () => {
+    appunti[item.img] = textarea.value;
+    salvaAppunti();
+  });
 }
 
 //if (/iPhone|iPad|iPod/.test(navigator.userAgent)) {
